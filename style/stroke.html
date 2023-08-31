@@ -11,15 +11,19 @@
   </body>
 
   <script>
-    const canvas = new fabric.Canvas('canvas')
+    const canvas = new fabric.Canvas('canvas', { width: 1000, height: 1000 })
 
-    // 创建Text元素
-    const itext = new fabric.IText('双击可编辑', {
-      top: 0, // 文本到画布顶部的距离
-      left: 0 // 文本到画布左侧的距离
+    // 创建矩形元素
+    const rect = new fabric.Rect({
+      top: 30,
+      left: 30,
+      width: 30,
+      height: 30,
+      fill: 'transparent', // 填充设置透明
+      stroke: 'red' // 设置描边颜色
     })
 
     // 加入画布中
-    canvas.add(itext)
+    canvas.add(rect)
   </script>
 </html>

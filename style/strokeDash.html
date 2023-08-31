@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', { width: 1000, height: 1000 })
+
+    // 创建矩形元素
+    const rect = new fabric.Rect({
+      top: 30,
+      left: 30,
+      width: 100,
+      height: 100,
+      fill: 'transparent',
+      stroke: 'red',
+      strokeDashArray: [4, 10] // 虚线边框 , 出来的效果就是 实线4像素, 空白10像素, 实线4像素, 空白10像素
+    })
+
+    // 加入画布中
+    canvas.add(rect)
+  </script>
+</html>
