@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', { width: 1000, height: 1000 })
+
+    // 使用fabric的api加载图片
+    fabric.Image.fromURL(
+      './CBS309X02.jpg', // 参数1：图片路径
+      img => {
+        // 参数2：图片加载完成后的回调函数
+        // 设置图片在画布中的位置
+        img.top = 50
+        img.left = 50
+        // 将图片添加到画布中
+        canvas.add(img)
+      }
+    )
+  </script>
+</html>

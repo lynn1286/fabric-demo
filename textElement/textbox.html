@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', { width: 1000, height: 1000 })
+
+    // 创建Text元素 , 设置了 width 后，会根据内容长度和空格（单词）来换行。
+    const textbox = new fabric.Textbox(
+      '多文本输入框多文本输入框多文本输入框多文本输入框 多文本输入框多文本输入框多文本输入框多文本输入框多文本输入框多文本输入框 多文本输入框多文本输入框多文本输入框多文本输入框多文本输入框',
+      {
+        width: 100,
+        top: 20,
+        left: 100
+      }
+    )
+
+    // 加入画布中
+    canvas.add(textbox)
+  </script>
+</html>
