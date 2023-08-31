@@ -11,10 +11,22 @@
   </body>
 
   <script>
-    const canvas = new fabric.Canvas('canvas', {
-      width: 600,
-      height: 600,
-      backgroundColor: '#aa96da' // 允许传入rgba值
-    })
+    const canvas = new fabric.Canvas('canvas')
+
+    // 创建线段元素
+    const line = new fabric.Line(
+      [
+        10,
+        10, // 起始点坐标
+        200,
+        300 // 结束点坐标
+      ],
+      {
+        stroke: 'red' // 笔触颜色
+      }
+    )
+
+    // 加入画布中
+    canvas.add(line)
   </script>
 </html>

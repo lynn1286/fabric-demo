@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas')
+
+    // 创建矩形元素
+    const rect = new fabric.Rect({
+      top: 40, // 矩形顶部离画布原点y坐标的距离
+      left: 40, // 矩形左侧离画布原点x坐标的距离
+      width: 30, // 矩形宽度
+      height: 30, // 矩形高度
+      fill: 'darkcyan' // 填充色（默认黑色）
+    })
+
+    // 加入画布中
+    canvas.add(rect)
+  </script>
+</html>
