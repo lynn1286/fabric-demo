@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>时光机</title>
+    <style>
+      canvas {
+        border: 1px solid #000;
+        margin-bottom: 12px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+    <button id="undo">上一步</button>
+    <button id="redo">下一步</button>
+    <br />
+  </body>
+  <script>
+    let saveJSON =
+      '{"version":"5.3.0","objects":[{"type":"rect","version":"5.3.0","originX":"left","originY":"top","left":0,"top":0,"width":30,"height":30,"fill":"#000","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":4,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":1,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"rx":0,"ry":0,"name":"Nono"}],"background":"#fff"}'
+
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600
+    })
+    canvas.loadFromJSON(saveJSON)
+
+    // 目前状态
+    let state = canvas.toJSON()
+
+    const SVGString = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Using g to inherit presentation attributes -->
+      <g fill="white" stroke="green" stroke-width="5">
+        <circle cx="40" cy="40" r="25" />
+        <circle cx="60" cy="60" r="25" />
+      </g>
+    </svg>`
+
+    fabric.loadSVGFromString(SVGString, (objects, options) => {
+      const obj = fabric.util.groupSVGElements(objects, options)
+      canvas.add(obj).renderAll()
+      state = canvas.toJSON()
+    })
+
+    // 存储之前的步骤
+    const undo = []
+    // 存储之后的步骤
+    const redo = []
+
+    // event
+    const undoBtn = document.querySelector('#undo')
+    const redoBtn = document.querySelector('#redo')
+
+    // 当 canvas 中的对象被修改时，先将之前的 state push 进入 undo 里面，再把目前的 state 存储起來
+    canvas.on('object:modified', e => {
+      undo.push(state)
+      state = JSON.stringify(canvas)
+      redo.length = 0
+    })
+
+    // 把最后一次修改的内容通过 pop 拿出来读区，再将 state 更改为上一步的状态
+    function doUndo() {
+      if (!undo.length) {
+        alert('没有历史修改记录了～！')
+        return
+      }
+      let lastJSON = undo.pop()
+      canvas.loadFromJSON(lastJSON)
+      // 在做上一步时把目前的状态 push 到 redo 数组
+      redo.push(state)
+      // 修改当前 state
+      state = lastJSON
+    }
+
+    function doRedo() {
+      if (!redo.length) {
+        alert('没有历史修改记录了～！')
+        return
+      }
+      let lastJSON = redo.pop()
+      canvas.loadFromJSON(lastJSON)
+
+      undo.push(state)
+      state = lastJSON
+    }
+
+    undoBtn.addEventListener('click', doUndo)
+    redoBtn.addEventListener('click', doRedo)
+  </script>
+</html>

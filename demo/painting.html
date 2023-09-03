@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>繪畫功能介紹</title>
+  </head>
+  <style>
+    canvas {
+      border: 1px solid #000;
+      margin-bottom: 12px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+
+    <div>
+      <button id="mode">切換成物件模式</button>
+    </div>
+  </body>
+
+  <script>
+    const $ = id => document.getElementById(id)
+    const modeBtn = $('mode')
+    const canvas = new fabric.Canvas('canvas', {
+      width: 500,
+      height: 500
+    })
+
+    function toggleMode() {
+      canvas.isDrawingMode = !canvas.isDrawingMode
+      if (!canvas.isDrawingMode) {
+        modeBtn.innerHTML = '切換成畫筆模式'
+        drawingOptionArea.style.display = 'none'
+      } else {
+        modeBtn.innerHTML = '切換成物件模式'
+        drawingOptionArea.style.display = ''
+      }
+    }
+
+    // 切換
+    canvas.isDrawingMode = true
+    modeBtn.addEventListener('click', toggleMode)
+
+    // 改变笔刷的颜色
+    // canvas.freeDrawingBrush.color = 'rgba(255,0,0, 0.3)'
+    // 改变笔刷的大小
+    // canvas.freeDrawingBrush.width = 10
+
+    // 这种方式设置的阴影不会实时展示，而是在鼠标松开后展示
+    // canvas.freeDrawingBrush.shadow = '10px 10px rgba(0, 0, 0, 0.5)'
+
+    // 为笔刷实时加入阴影样式
+    // canvas.freeDrawingBrush.shadow = new fabric.Shadow({
+    //   blur: 20,
+    //   offsetX: 20,
+    //   offsetY: 10,
+    //   affectStroke: true,
+    //   color: 'red'
+    // })
+
+    // 圆形画笔
+    // canvas.freeDrawingBrush = new fabric.CircleBrush(canvas)
+    // 改变圆形笔刷的颜色
+    // canvas.freeDrawingBrush.color = 'rgba(255,0,0, 0.3)'
+    // 改变圆形笔刷的大小
+    // canvas.freeDrawingBrush.width = 10
+
+    // 喷雾笔刷
+    // canvas.freeDrawingBrush = new fabric.SprayBrush(canvas)
+    // 改变喷雾笔刷的颜色
+    // canvas.freeDrawingBrush.color = 'rgba(255,0,0, 0.3)'
+    // 改变喷雾笔刷的大小
+    // canvas.freeDrawingBrush.width = 10
+
+    // 自定义笔刷
+    const squareBrush = new fabric.PatternBrush(canvas)
+    // getPatternSrc  取得要重複繪製的圖形 Canvas
+    squareBrush.getPatternSrc = function () {
+      const squareWidth = 10
+      const squareDistance = 2
+      // 創立一個暫存 canvas 來繪製要畫的圖案
+      const patternCanvas = fabric.document.createElement('canvas')
+      // canvas 總大小為每一格畫筆的大小
+      patternCanvas.width = patternCanvas.height = squareWidth + squareDistance
+
+      const ctx = patternCanvas.getContext('2d')
+
+      ctx.fillStyle = this.color
+      ctx.fillRect(0, 0, squareWidth, squareWidth)
+      // 回傳繪製完畢的 canvas
+      return patternCanvas
+    }
+    canvas.freeDrawingBrush = squareBrush
+    canvas.freeDrawingBrush.color = 'rgba(255,0,0, 0.3)'
+    canvas.freeDrawingBrush.width = 10
+  </script>
+</html>

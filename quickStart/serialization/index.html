@@ -22,8 +22,17 @@
       left: 30,
       width: 30,
       height: 30,
-      fill: 'darkcyan'
+      fill: 'darkcyan',
+      id: '123456'
     })
+
+    rect.toObject = (function (toObject) {
+      return function () {
+        return fabric.util.object.extend(toObject.call(this), {
+          id: this.id
+        })
+      }
+    })(rect.toObject)
 
     canvas.add(rect)
 

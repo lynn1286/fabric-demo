@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自定义控制器样式</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 500,
+      height: 500
+    })
+
+    const rect = new fabric.Rect({
+      width: 100,
+      height: 100
+    })
+
+    canvas.add(rect)
+
+    // setControlsVisibility 控制是否显示控制器 ， 注意，这是会将所有的元素的控制器都改变
+    // fabric.Object.prototype.setControlsVisibility({
+    //   bl: true, // 左下
+    //   br: true, // 右下
+    //   mb: false, // 下中
+    //   ml: false, // 中左
+    //   mr: false, // 中右
+    //   mt: false, // 上中
+    //   tl: true, // 上左
+    //   tr: true, // 上右
+    //   mtr: false // 旋轉控制鍵
+    // })
+
+    // 是否显示 border
+    // rect.hasBorders = false
+    // 是否显示控制器
+    // rect.hasControls = false
+
+    rect.set({
+      // 將此屬性設定成 false 才有辦法設定填滿設定點
+      transparentCorners: false,
+      borderColor: 'red', // 邊框顏色
+      cornerColor: 'red', // 控制點填滿色
+      cornerSize: 10, // 控制點大小
+      cornerStrokeColor: 'blue', // 控制點邊框色
+      padding: 10, // 控制器的 padding
+      borderDashArray: [5, 5], // 控制器的虚线
+      cornerStyle: 'circle' // 控制点的形状
+    })
+
+    // 让 rect 无法被选中
+    // rect.selectable = false
+
+    // 按住鼠标后不会出现选择区域的样式
+    // canvas.selection = false
+
+    // 设置选择区域的背景样式
+    canvas.selectionColor = 'rgba(255,0,0,0.3)'
+
+    // 设置选择区域的边框样式
+    canvas.selectionBorderColor = 'red'
+
+    // 设置选择区域的边框粗细样式
+    canvas.selectionLineWidth = '1'
+
+    // 设置选择区域的边框虚线样式
+    canvas.selectionDashArray = [5, 5]
+
+    // canvas.uniScaleTransform = false
+  </script>
+</html>
