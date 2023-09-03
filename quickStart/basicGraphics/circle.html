@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建圆形</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      backgroundColor: '#aa96da' // 允许传入rgba值
+    })
+
+    // 创建圆形
+    let circle = new fabric.Circle({
+      radius: 50, // 半径
+      top: 80,
+      left: 80,
+      originX: 'left'
+    })
+
+    // 将圆形添加到画布中
+    canvas.add(circle)
+  </script>
+</html>

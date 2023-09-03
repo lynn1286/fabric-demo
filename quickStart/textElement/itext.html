@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>创建可编辑文本</title>
   </head>
   <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
   <body>
@@ -13,15 +13,13 @@
   <script>
     const canvas = new fabric.Canvas('canvas')
 
-    // 创建圆形元素
-    const circle = new fabric.Circle({
-      top: 30, // 定义图形选区左上角的坐标位置
-      left: 50, // 定义图形选区左上角的坐标位置
-      radius: 40, // 设置圆形的半径
-      fill: '#a18cd1' // 圆形填充色，默认是黑色
+    // 创建Text元素
+    const itext = new fabric.IText('双击可编辑', {
+      top: 0, // 文本到画布顶部的距离
+      left: 0 // 文本到画布左侧的距离
     })
 
     // 加入画布中
-    canvas.add(circle)
+    canvas.add(itext)
   </script>
 </html>

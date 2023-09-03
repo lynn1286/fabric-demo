@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建折线</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      backgroundColor: '#aa96da' // 允许传入rgba值
+    })
+
+    // 折线
+    let polyline = new fabric.Polyline(
+      [
+        // 第一个点
+        { x: 30, y: 30 },
+        // 第二个点
+        { x: 150, y: 100 },
+        // 第三个点
+        { x: 80, y: 100 },
+        // 第四个点
+        { x: 100, y: 30 }
+      ],
+      {
+        fill: 'transparent', // 如果画折线，需要填充透明
+        stroke: '#6639a6', // 线段颜色：紫色
+        strokeWidth: 5 // 线段粗细 5
+      }
+    )
+
+    // 将折线添加到画布中
+    canvas.add(polyline)
+  </script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设置背景色</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <!-- 1. 固定背景色 -->
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+
+    <!-- 2. 背景色 -->
+    <canvas id="canvas2" style="border: 1px solid #ccc"></canvas>
+    <div style="margin-top: 20px">
+      <button onclick="toggle()">蓝色 / 橙色</button>
+    </div>
+
+    <!-- 3. 背景图 -->
+    <div style="margin-top: 20px">
+      <button onclick="setBgImg()">设置背景图</button>
+    </div>
+    <canvas id="canvas3" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    // 1. 直接写死背景色
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      backgroundColor: '#aa96da' // 允许传入rgba值
+    })
+
+    // 2. 通过 api 设置背景色
+    // 'coral' 橙色
+    // 'deepskyblue' 蓝色
+    let color = 'coral'
+
+    // 修改背景颜色
+    function toggle() {
+      color = color === 'coral' ? 'deepskyblue' : 'coral'
+
+      // 设置(修改)画布背景颜色
+      canvas2.setBackgroundColor(
+        color,
+        canvas2.renderAll.bind(canvas2) // 回调函数，刷新画布。如果不写这句，背景色会修改，但不会在画布上呈现出来，需要执行下一帧刷新才会呈现。
+      )
+    }
+
+    // 初始化画布
+    let canvas2 = new fabric.Canvas('canvas2', {
+      backgroundColor: color // 初始化时给画布设置一个颜色
+    })
+
+    // 3. 背景图
+    // 设置canvas宽度500
+    function setBgImg() {
+      // 设置(修改)画布背景图
+      canvas3.setBackgroundColor(
+        {
+          source: './CBS309X02.jpg', // 图片路径（可以是本地图片，也可以是网图地址）
+          offsetX: 100, // x轴方向的偏移量
+          offsetY: 100, // y轴方向的偏移量
+          repeat: 'repeat' // 背景是否重复，默认: 'repeat'。可选值: 'repeat'、'no-repeat'、'repeat-x'、'repeat-y'
+        },
+        canvas3.renderAll.bind(canvas3)
+      )
+    }
+
+    // 初始化画布
+    let canvas3 = new fabric.Canvas('canvas3', {
+      width: 500,
+      height: 500
+    })
+  </script>
+</html>

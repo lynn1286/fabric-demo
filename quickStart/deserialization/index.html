@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+    <button class="fn_btn" onclick="loadFromJSON()">导入数据</button>
+    <button class="fn_btn" onclick="toJSON()">导出数据</button>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600
+    })
+
+    // 准备数据
+    const data = `{
+    "version": "5.3.0",
+    "objects": [
+      {
+        "type": "rect",
+        "version": "5.3.0",
+        "originX": "left",
+        "originY": "top",
+        "left": 400,
+        "top": 52.66,
+        "width": 30,
+        "height": 30,
+        "fill": "darkcyan",
+        "stroke": null,
+        "strokeWidth": 1,
+        "strokeDashArray": null,
+        "strokeLineCap": "butt",
+        "strokeDashOffset": 0,
+        "strokeLineJoin": "miter",
+        "strokeUniform": false,
+        "strokeMiterLimit": 4,
+        "scaleX": 1,
+        "scaleY": 1,
+        "angle": 0,
+        "flipX": false,
+        "flipY": false,
+        "opacity": 1,
+        "shadow": null,
+        "visible": true,
+        "backgroundColor": "",
+        "fillRule": "nonzero",
+        "paintFirst": "fill",
+        "globalCompositeOperation": "source-over",
+        "skewX": 0,
+        "skewY": 0,
+        "rx": 0,
+        "ry": 0
+      }
+    ]
+  }`
+
+    // 导入数据
+    function loadFromJSON() {
+      canvas.loadFromJSON(data)
+    }
+
+    // 输出json
+    function toJSON() {
+      const result = canvas.toJSON()
+      console.log(result) // 在控制台输出结果
+    }
+  </script>
+</html>

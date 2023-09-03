@@ -8,21 +8,29 @@
   <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
   <body>
     <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+    <button class="fn_btn" onclick="toJSON()">保存为 JSON</button>
   </body>
 
   <script>
-    const canvas = new fabric.Canvas('canvas')
-
-    // 创建矩形元素
-    const rect = new fabric.Rect({
-      top: 40, // 矩形顶部离画布原点y坐标的距离
-      left: 40, // 矩形左侧离画布原点x坐标的距离
-      width: 30, // 矩形宽度
-      height: 30, // 矩形高度
-      fill: 'darkcyan' // 填充色（默认黑色）
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600
     })
 
-    // 加入画布中
+    const rect = new fabric.Rect({
+      top: 30,
+      left: 30,
+      width: 30,
+      height: 30,
+      fill: 'darkcyan'
+    })
+
     canvas.add(rect)
+
+    // 输出json
+    function toJSON() {
+      const result = canvas.toJSON()
+      console.log(result) // 在控制台输出结果
+    }
   </script>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设置前景色</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <div>
+      <button onclick="setOverlayImg()">设置前景图</button>
+    </div>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      overlayColor: '#f6416c' // 前景色会覆盖页面中所有内容。
+    })
+
+    // 视觉上矩形不可见的原因是因为设置了前景色，但是元素依旧可以被操作
+    let rect = new fabric.Rect({
+      top: 10,
+      left: 10,
+      width: 60,
+      height: 60
+    })
+
+    canvas.add(rect)
+
+    // 设置canvas前景图
+    function setOverlayImg() {
+      // 设置(修改)画布前景图
+      canvas.setOverlayColor(
+        {
+          source: './CBS309X02.jpg' // 图片路径（可以是本地图片，也可以是网图地址）
+          // offsetX: 100, // x轴方向的偏移量
+          // offsetY: 100, // y轴方向的偏移量
+          // repeat: 'repeat' // 前景是否重复，默认: 'repeat'。可选值: 'repeat'、'no-repeat'、'repeat-x'、'repeat-y'
+        },
+        canvas.renderAll.bind(canvas)
+      )
+    }
+  </script>
+</html>

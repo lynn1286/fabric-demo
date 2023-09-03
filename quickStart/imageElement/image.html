@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>将 HTML 图片元素插入画布</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <img id="imgId" src="./CBS309X02.jpg" />
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      backgroundColor: '#aa96da' // 允许传入rgba值
+    })
+
+    // 获取页面中的图片元素
+    const imgDom = document.getElementById('imgId')
+
+    // 等待图片加载完
+    imgDom.onload = function () {
+      // 创建 fabric 图片元素
+      let imgInstance = new fabric.Image(imgDom, {
+        top: 20,
+        left: 90,
+        width: 200,
+        height: 200,
+        angle: 20
+      })
+      canvas.add(imgInstance)
+    }
+  </script>
+</html>

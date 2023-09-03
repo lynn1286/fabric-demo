@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600
+    })
+
+    // 矩形
+    const rect = new fabric.Rect({
+      top: 30,
+      left: 30,
+      width: 30,
+      height: 30,
+      fill: 'darkcyan'
+    })
+
+    const circle = new fabric.Circle({
+      top: 30,
+      left: 100,
+      radius: 30,
+      fill: '#aa96da'
+    })
+
+    // 将矩形和圆形添加到画布中
+    canvas.add(rect, circle)
+
+    // 监听矩形移动
+    rect.on('moving', options => {
+      console.log('rect moving事件：', options)
+    })
+  </script>
+</html>

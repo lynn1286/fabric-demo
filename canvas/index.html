@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三种设置画布宽高的方式</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <!-- 1. 在 canvas dom 上设置宽高 -->
+    <!-- <canvas width="400" height="400"></canvas> -->
+
+    <div>
+      <button onclick="setWidth()">宽度设为500</button>
+      <button onclick="setHeight()">高度设为250</button>
+      <button onclick="setDimensions()">宽度设为100，高度设为100</button>
+    </div>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    // 2. 在 fabric canvas 实例上设置宽高
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600
+    })
+
+    // 3. 通过 fabric canvas api 设置宽高
+    // 设置canvas宽度500
+    function setWidth() {
+      canvas.setWidth(500)
+    }
+
+    // 设置canvas高度为250
+    function setHeight() {
+      canvas.setHeight(250)
+    }
+
+    // 同时设置canvas的宽高
+    function setDimensions() {
+      canvas.setDimensions({
+        width: 100,
+        height: 100
+      })
+    }
+  </script>
+</html>

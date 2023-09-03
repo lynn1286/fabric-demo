@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>设置鼠标光标样式</title>
   </head>
   <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
   <body>
@@ -11,15 +11,10 @@
   </body>
 
   <script>
-    const canvas = new fabric.Canvas('canvas')
-
-    // 创建Text元素
-    const itext = new fabric.IText('双击可编辑', {
-      top: 0, // 文本到画布顶部的距离
-      left: 0 // 文本到画布左侧的距离
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      defaultCursor: 'wait' // 设置鼠标的光标
     })
-
-    // 加入画布中
-    canvas.add(itext)
   </script>
 </html>

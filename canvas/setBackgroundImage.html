@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设置背景图</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+
+    <button onclick="setImg()">更新背景图</button>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      backgroundImage: './CBS309X02.jpg' // 设置背景图，可以是本地图片，也可以是网络图片
+    })
+
+    function setImg() {
+      canvas.setBackgroundImage('./leone-venter-pVt9j3iWtPM.jpg', canvas.renderAll.bind(canvas), {
+        angle: 10 // 旋转背景图
+      })
+    }
+  </script>
+</html>

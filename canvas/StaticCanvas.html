@@ -11,17 +11,19 @@
   </body>
 
   <script>
-    const canvas = new fabric.Canvas('canvas')
-
-    // 创建Text元素
-    const text = new fabric.Text('我是普通文本', {
-      fill: 'hot#aa96da', // 文本填充色
-      fontSize: 20, // 字号
-      left: 10,
-      top: 50
+    const canvas = new fabric.StaticCanvas('canvas', {
+      width: 600,
+      height: 600
     })
 
-    // 加入画布中
-    canvas.add(text)
+    // 矩形
+    let rect = new fabric.Rect({
+      top: 10,
+      left: 10,
+      width: 60,
+      height: 60,
+      fill: 'CornflowerBlue'
+    })
+    canvas.add(rect)
   </script>
 </html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建直线</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      backgroundColor: '#aa96da' // 允许传入rgba值
+    })
+
+    // 直线
+    let line = new fabric.Line(
+      [
+        // 起始点坐标
+        100, 50,
+        // 结束点坐标
+        400, 400
+      ],
+      {
+        stroke: 'red' // 笔触颜色
+      }
+    )
+
+    // 将直线添加到画布中
+    canvas.add(line)
+
+    line.on('moving', opt => {
+      console.log('🚀 ~  : opt', canvas.toJSON())
+    })
+  </script>
+</html>

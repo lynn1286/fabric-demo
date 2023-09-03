@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>绘画模式</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <div>
+      <button onclick="toggleDrawing()">开启/关闭 绘图模式</button>
+    </div>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600,
+      isDrawingMode: true
+    })
+
+    // 开启｜关闭 绘图模式
+    function toggleDrawing() {
+      canvas.isDrawingMode = !canvas.isDrawingMode
+    }
+  </script>
+</html>

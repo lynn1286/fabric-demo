@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>创建文本</title>
   </head>
   <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
   <body>
@@ -13,20 +13,15 @@
   <script>
     const canvas = new fabric.Canvas('canvas')
 
-    // 创建线段元素
-    const line = new fabric.Line(
-      [
-        10,
-        10, // 起始点坐标
-        200,
-        300 // 结束点坐标
-      ],
-      {
-        stroke: 'red' // 笔触颜色
-      }
-    )
+    // 创建Text元素
+    const text = new fabric.Text('我是普通文本', {
+      fill: 'hot#aa96da', // 文本填充色
+      fontSize: 20, // 字号
+      left: 10,
+      top: 50
+    })
 
     // 加入画布中
-    canvas.add(line)
+    canvas.add(text)
   </script>
 </html>

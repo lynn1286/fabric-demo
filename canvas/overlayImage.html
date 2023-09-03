@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>设置前景图</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <div>
+      <button onclick="setOverlayImage()">设置前景图</button>
+    </div>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    // 初始化画布
+    let canvas = new fabric.Canvas('canvas', {
+      overlayImage: './CBS309X02.jpg' // 在初始化画布时设置前景图
+    })
+
+    // 矩形
+    let rect = new fabric.Rect({
+      top: 10,
+      left: 10,
+      width: 60,
+      height: 60,
+      fill: 'CornflowerBlue'
+    })
+    canvas.add(rect)
+
+    // 手动设置前景图
+    function setOverlayImage() {
+      // 设置(修改)画布前景图
+      canvas.setOverlayImage('./leone-venter-pVt9j3iWtPM.jpg', canvas.renderAll.bind(canvas), {
+        angle: 20 // 旋转
+      })
+    }
+  </script>
+</html>

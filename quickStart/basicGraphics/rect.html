@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建矩形</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/fabric"></script>
+  <body>
+    <canvas id="canvas" style="border: 1px solid #ccc"></canvas>
+  </body>
+
+  <script>
+    const canvas = new fabric.Canvas('canvas', {
+      width: 600,
+      height: 600
+    })
+
+    // 创建矩形
+    let rect = new fabric.Rect({
+      top: 180, // 距画布顶部距离
+      left: 80, // 距画布左侧距离
+
+      width: 80, // 矩形宽度
+      height: 80, // 矩形高度
+
+      // 基于原点绘制 , 例如下面的配置，将绘制在画布的 x： 80 ， y: 80的位置，但是是基于这个矩形的left、bottom原点绘制， 也就是说，最终的结果是在x、y轴的右上方绘制的
+      originX: 'center',
+      originY: 'bottom',
+
+      // fill: 'transparent', // 可以填充透明色
+      fill: '#95e1d3', // 十六进制颜色值
+
+      stroke: 'red', // 通过颜色关键字设置矩形描边颜色
+      // strokeWidth: 10, // 设置边框宽度
+      // strokeUniform: true, // 固定边框宽度 , 默认是等比缩放的
+
+      // 10px实线, 10px虚线, 10px实线, 10px虚线……
+      // strokeDashArray: [10],
+
+      // 10px实线, 20px虚线, 10px实线, 20px虚线……
+      // strokeDashArray: [10, 20]
+
+      // 10px实线, 20px虚线, 30px实线, 10px虚线, 20px实线, 30px虚线……
+      strokeDashArray: [100, 20, 30],
+      // strokeDashOffset: 4, // 逆时针偏移
+      strokeDashOffset: -10, // 顺时针偏移
+
+      // rx: 10 // 圆角设置， 只设置了rx，那么ry的值也是10
+      // rx: 40,
+      // ry: 40
+      // rx: 200, // rx 和 ry 的值是 height 的一半，此时 height 比 width 小
+      // ry: 200
+      // rx: 200, // rx 和 ry 的值是 width 的一半，此时 width 比 height 大
+      // ry: 200
+
+      angle: 0 // 旋转10度
+    })
+
+    // 可以单独设置
+    // rect.width = 60
+    // rect.height = 80
+
+    // 线性渐变
+    let gradient = new fabric.Gradient({
+      type: 'linear', // linear or radial
+      gradientUnits: 'pixels', // pixels or pencentage 像素 或者 百分比
+      coords: { x1: 0, y1: 0, x2: 80, y2: 60 }, // 至少2个坐标对（x1，y1和x2，y2）将定义渐变在对象上的扩展方式
+      colorStops: [
+        // 定义渐变颜色的数组
+        { offset: 0, color: 'orange' },
+        { offset: 1, color: 'hotpink' }
+      ]
+    })
+
+    let rect1 = new fabric.Rect({
+      top: 20,
+      left: 20,
+      width: 80,
+      height: 60,
+      fill: gradient
+    })
+
+    let rect2 = new fabric.Rect({
+      top: 20,
+      left: 140,
+      width: 80,
+      height: 60,
+      fill: gradient,
+      flipX: true // 水平翻转
+    })
+
+    let rect3 = new fabric.Rect({
+      top: 120,
+      left: 20,
+      width: 80,
+      height: 60,
+      fill: gradient,
+      flipY: true // 垂直翻转
+    })
+
+    // 将矩形添加到画布中
+    canvas.add(rect, rect1, rect2, rect3)
+  </script>
+</html>
